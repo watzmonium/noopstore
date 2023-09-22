@@ -1,6 +1,6 @@
 import Product from "./Product";
 
-const ProductList = ({ productData, onDeleteProduct, onUpdateProducts }) => {
+const ProductList = ({ productData, onDeleteProduct, onUpdateProducts, onAddProductToCart }) => {
 
   return (
     <ul className="product-list">
@@ -12,6 +12,7 @@ const ProductList = ({ productData, onDeleteProduct, onUpdateProducts }) => {
               productData={product}
               onDeleteProduct={onDeleteProduct}
               onUpdateProducts={onUpdateProducts}
+              onAddProductToCart={onAddProductToCart}
             />
           );
         })}

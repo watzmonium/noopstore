@@ -1,10 +1,20 @@
-import ProductList from './ProductList';
+import ProductList from "./ProductList";
 
-const ProductListing = ({productData, onDeleteProduct, onUpdateProducts}) => {
+const ProductListing = ({
+  productData,
+  onDeleteProduct,
+  onUpdateProducts,
+  onAddProductToCart,
+}) => {
   return (
-    <div className='product-listing'>
+    <div className="product-listing">
       <h2>Products</h2>
-      <ProductList productData={productData} onDeleteProduct={onDeleteProduct} onUpdateProducts={onUpdateProducts} />
+      <ProductList
+        productData={productData}
+        onDeleteProduct={onDeleteProduct}
+        onUpdateProducts={onUpdateProducts}
+        onAddProductToCart={onAddProductToCart}
+      />
     </div>
   );
 };

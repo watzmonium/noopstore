@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ProductForm from "./ProductForm";
 
 const EditProduct = ({productData, onClickCancel, onFormSubmit}) => {

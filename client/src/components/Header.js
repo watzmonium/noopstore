@@ -1,13 +1,10 @@
-const Header = () => {
+import Cart from "./Cart";
+
+const Header = ({cart, cartTotal, onCheckout}) => {
   return (
     <header>
     <h1>NoopStore</h1>
-    <div className="cart">
-      <h2>Your Cart</h2>
-      <p>Your cart is empty</p>
-      <p>Total: $0</p>
-      <button className="checkout" disabled>Checkout</button>
-    </div>
+    <Cart cart={cart} cartTotal={cartTotal} onCheckout={onCheckout} />
   </header>
   );
 };

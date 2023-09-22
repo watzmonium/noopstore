@@ -1,12 +1,10 @@
-import Input from './Input';
 
-const InputGroup = ({inputAttributes, onInputChange}) => {
-  const {label, attributes} = inputAttributes;
+const InputGroup = ({inputAttributes, value, setValue}) => {
 
   return (
     <div className="input-group">
-      <label htmlFor={label}>{attributes['aria-label']}</label>
-      <Input inputAttributes={attributes} onInputChange={onInputChange} />
+      <label htmlFor={inputAttributes.id}>{inputAttributes['aria-label']}</label>
+      <input onChange={e => setValue(e.target.value)} {...inputAttributes} value={value}></input>
     </div>
   );
 };

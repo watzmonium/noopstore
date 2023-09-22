@@ -18,14 +18,6 @@ const ProductForm = ({ onFormSubmit, onClickCancel, productData = {} }) => {
   const [productQuantity, setProductQuantity] = useState(() =>
     productData.quantity ? productData.quantity : ""
   );
-  productTitleInput.attributes.value = productTitle;
-  productPriceInput.attributes.value = productPrice;
-  productQuantityInput.attributes.value = productQuantity;
-
-  const handleInputChange = (event, setValue) => {
-    event.preventDefault();
-    setValue(event.target.value);
-  };
 
   const resetForm = () => {
     setProductTitle("");
@@ -48,15 +40,18 @@ const ProductForm = ({ onFormSubmit, onClickCancel, productData = {} }) => {
     <form onSubmit={handleSubmitForm}>
       <InputGroup
         inputAttributes={productTitleInput}
-        onInputChange={(e) => handleInputChange(e, setProductTitle)}
+        value={productTitle}
+        setValue={setProductTitle}
       />
       <InputGroup
         inputAttributes={productPriceInput}
-        onInputChange={(e) => handleInputChange(e, setProductPrice)}
+        value={productPrice}
+        setValue={setProductPrice}
       />
       <InputGroup
         inputAttributes={productQuantityInput}
-        onInputChange={(e) => handleInputChange(e, setProductQuantity)}
+        value={productQuantity}
+        setValue={setProductQuantity}
       />
       <div className="actions form-actions">
         <button type="submit">Update</button>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import ProductActions from "./ProductActions";
 import EditProduct from "./EditProduct";
 
-const Product = ({ productData, onDeleteProduct, onUpdateProducts }) => {
+const Product = ({ productData, onDeleteProduct, onUpdateProducts, onAddProductToCart }) => {
   const { _id, title, price, quantity } = productData;
   const [showEdit, setShowEdit] = useState(false);
 
@@ -25,7 +25,7 @@ const Product = ({ productData, onDeleteProduct, onUpdateProducts }) => {
         <h3>{title}</h3>
         <p className="price">{price}</p>
         <p className="quantity">{quantity} left in stock</p>
-        <ProductActions onClickEdit={handleClickEdit} />
+        <ProductActions onClickEdit={handleClickEdit} onAddProductToCart={onAddProductToCart} productId={_id}/>
         <button className="delete-button" onClick={handleDeleteProduct}>
           <span>X</span>
         </button>
