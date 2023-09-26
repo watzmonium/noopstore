@@ -10,12 +10,10 @@ import { fetchCart, addToCart, checkout } from "./services/cart";
 import Header from "./components/Header";
 import AddProduct from "./components/AddProduct";
 import ProductListing from "./components/ProductListing";
-import AddProduct from "./components/AddProduct";
 
 const App = () => {
   const [productData, setProductData] = useState([]);
   const [cart, setCart] = useState([]);
-  const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
     fetchAllProductsFromService();
@@ -24,11 +22,6 @@ const App = () => {
   useEffect(() => {
     fetchCartFromService();
   }, []);
-
-  useEffect(() => {
-    console.log('runs');
-    updateCartTotal();
-  }, [cart]);
 
   const fetchAllProductsFromService = async () => {
     try {
@@ -49,10 +42,10 @@ const App = () => {
   };
 
   const handleAddNewProduct = async (title, price, quantity) => {
-    if (title === "" || price === "" || quantity === "") {
-      alert("missing fields");
-      return;
-    }
+    // if (title === "" || price === "" || quantity === "") {
+    //   alert("missing fields");
+    //   return;
+    // }
     const product = { title, price, quantity };
     try {
       const response = await addProduct(product);
@@ -88,46 +81,33 @@ const App = () => {
     try {
       const response = await addToCart(id);
       const { _, item } = response;
-      updateCart(item)
+      updateCart(item);
       fetchAllProductsFromService();
     } catch (e) {
       console.log(e.message);
     }
   };
 
-  const handleCheckout = async() => {
+  const handleCheckout = async () => {
     try {
       await checkout();
-      setCart([])
-    } catch(e) {
+      setCart([]);
+    } catch (e) {
       console.log(e.message);
     }
-  }
+  };
 
   const updateCart = (newItem) => {
     if (cart.length === 0) {
       setCart(cart.concat(newItem));
       return;
     }
-
-    setCart(
-      cart.map((item) => {
-        if (item._id === newItem._id) {
-          return newItem;
-        }
-        return item;
-      })
-    );
-  }
-
-  const updateCartTotal = () => {
-    const cost = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
-    setCartTotal(cost);
+    setCart(cart.filter((item) => item._id !== newItem._id).concat(newItem));
   };
 
   return (
     <main>
-      <Header cart={cart} cartTotal={cartTotal} onCheckout={handleCheckout}/>
+      <Header cart={cart} onCheckout={handleCheckout} />
       <ProductListing
         productData={productData}
         onDeleteProduct={handleDeleteProduct}

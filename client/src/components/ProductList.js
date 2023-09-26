@@ -1,7 +1,11 @@
 import Product from "./Product";
 
-const ProductList = ({ productData, onDeleteProduct, onUpdateProducts, onAddProductToCart }) => {
-
+const ProductList = ({
+  productData,
+  onDeleteProduct,
+  onUpdateProducts,
+  onAddProductToCart,
+}) => {
   return (
     <ul className="product-list">
       {productData.length > 0 &&

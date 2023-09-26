@@ -8,7 +8,6 @@ import {
 import InputGroup from "./InputGroup";
 
 const ProductForm = ({ onFormSubmit, onClickCancel, productData = {} }) => {
-
   const [productTitle, setProductTitle] = useState(() =>
     productData.title ? productData.title : ""
   );
@@ -28,7 +27,12 @@ const ProductForm = ({ onFormSubmit, onClickCancel, productData = {} }) => {
   const handleSubmitForm = async (event) => {
     event.preventDefault();
     try {
-      await onFormSubmit(productTitle, productPrice, productQuantity, productData.id);
+      await onFormSubmit(
+        productTitle,
+        productPrice,
+        productQuantity,
+        productData.id
+      );
       resetForm();
       onClickCancel();
     } catch (error) {
